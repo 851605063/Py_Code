@@ -13,7 +13,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 basic_url = "http://paper.people.com.cn/rmrb/html/"
 
-
+#pyinstaller -F xxx.py（xxx.py，打包的文件）
 # dict={'h3':'xxx','h1':'xxx','h2':'xxx','secP':secP,'articleDate':articleDate,'content':[]}
 def saveNews(dict, date):
     path = 'rmrb111/' + date
