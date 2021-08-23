@@ -30,7 +30,7 @@ class SendMail(object):
             return
         # 创建一个带附件的实例
         message = MIMEMultipart()
-        message['From'] = Header('群管理-李赞', 'utf-8')
+        message['From'] = Header('维修 电气191-刘开江', 'utf-8')
         message['To'] = Header(name, 'utf-8') # 这里可以不用设置
         subject = title
         message['Subject'] = Header(subject, 'utf-8')
@@ -49,4 +49,5 @@ class SendMail(object):
             print('被限制了休息1分钟重新调，预计',(datetime.datetime.now()+datetime.timedelta(minutes=11)).strftime("%Y-%m-%d %H:%M:%S"),'恢复...',datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
             sleep(60)
             SendMail.sendmail(title, content, name,users,count)
+
 

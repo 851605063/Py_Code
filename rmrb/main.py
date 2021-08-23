@@ -110,7 +110,54 @@ def getNewsbyList(url, date):
         #str(p.string).replace(u'\u3000', u'')
     article['contents'] = listP
     return article
+def modeSwitch():
+    while 1:
+        print("请输入获取模式：\n  输入1为按天数获取到今天\n  输入2为按开始日期获取到今天\n  输入3为仅获取输入日期的那天\n  按回车确定！")
+        mode = input()
+        if mode != "1" and mode != "2" and mode!="3":
+            print("请输入正确的mode!")
+            continue
+        break
+    return mode
+def modeExcute(mode):
+    if mode== "1":
+        print('请输入需要获取的天数，如1，再按回车，代表获取前一天：')
+        days = input()
+        getNewsContent_More(days)
+    if mode == "2":
+        while True:
+            print('请输入开始获取的日期，如2021-07/13：代表从2021年7月13号开始获取')
+            tmp = input()
+            if not is_date(tmp):
+                continue
+            break
+        nowStr=datetime.datetime.now().strftime('%Y-%m/%d')
+        date_now=datetime.datetime.strptime(nowStr,'%Y-%m/%d')
+        date_req=datetime.datetime.strptime(tmp,'%Y-%m/%d')
+        print(date_req.strftime('%Y-%m/%d'))
+        prev_day =date_now-date_req #类型为datetime.timedelta
+        getNewsContent_More(prev_day.days)
+    if mode == "3":
+        while True:
+            print('请输入需要获取的日期，如2021-07/13：代表获取2021年7月13号')
+            tmp = input()
+            if not is_date(tmp):
+                continue
+            break
+        date=datetime.datetime.strptime(tmp,'%Y-%m/%d').strftime('%Y-%m/%d')
+        getNewsContent_OneDay(date)
+def is_date(str):
+    try:
+        datetime.datetime.strptime(str,"%Y-%m/%d")
+        return True
+    except:
+        return False
 if __name__ == "__main__":
-    print('请输入需要获取的天数：')
-    days = input()
-    getNewsContent_More(days)
+    # print('请输入需要获取的天数，如1，再按回车，代表获取前一天：')
+#     # days = input()
+#     # getNewsContent_More(days)
+    modeExcute(modeSwitch())
+
+
+
+

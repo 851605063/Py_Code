@@ -1,5 +1,5 @@
 from com.SendMailUtil import SendMailUtil as SendMail
-
+import requests
 
 class ReadFileSendMail(object):
 

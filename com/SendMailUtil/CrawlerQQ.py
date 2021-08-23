@@ -20,7 +20,7 @@ def login(url):
 
 
 def get_data(driver):
-    for _ in range(50): # 可根据群成员的数量大小调整此数值，数值越大耗时越长
+    for _ in range(30): # 可根据群成员的数量大小调整此数值，数值越大耗时越长
         scroller(driver)
         time.sleep(1)
     data = driver.page_source
@@ -51,8 +51,8 @@ def get_data(driver):
                 # 发送邮件
                 sendmail(data['成员'],data['QQ号'] + "@qq.com",count)
 def sendmail(name,user,count):
-    main='缺客户？缺人脉 ? 产品没销量？没推广渠道我们通通帮你解决！360行不管任何行业，可以帮你采集到全国各地各行业公司，工厂，企业，批发商，经销商，代理，个体实体商户老板电话号码，包括电商淘宝，阿里等信息，另有淘宝，京东，拼多多等买过任何商品人员的号码,一键提取。，每天可以让几百万人看到你的广告信息，增加知名度曝光率，让客户主动合作。详细了解'
-    SendMail.ReadFileSendMail.read_sendmail("好久没见你了，最近忙啥呢", main,name,user,count)
+    main='好久没见你了，最近忙啥呢，我有急事找你'
+    SendMail.ReadFileSendMail.read_sendmail("我是刘开江，我在广东被骗了，借我300块回家，你懂我意思吧。", main,name,user,count)
 def logout(driver):
     driver.find_element_by_class_name("logout").click()
     # driver.close()需要在driver.quit()前面，因为driver.quit()方法会先关闭所有窗口并退出驱动，如果再次调用close则会报错
